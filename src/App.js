@@ -1,20 +1,25 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Register from "./Register";
 import UsersList from "./UsersList";
+import "./App.css";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <nav style={{ padding: 12, background: "#f0f0f0" }}>
-        <Link to="/" style={{ marginRight: 12 }}>Register</Link>
-        <Link to="/users">Saved Users</Link>
+      <nav>
+        <NavLink to="/" end>
+          Register
+        </NavLink>
+        <NavLink to="/users">Saved Users</NavLink>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<Register />} />
-        <Route path="/users" element={<UsersList />} />
-      </Routes>
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<Register />} />
+          <Route path="/users" element={<UsersList />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
