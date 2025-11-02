@@ -1,33 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { getUsersFromLocal, clearUsers } from "./utils";
+import React, { useEffect, useState } from "react";
+import { listenToUsers, clearUsers } from "./utils";
 import { useNavigate } from "react-router-dom";
 import "./UsersList.css";
 
-const PAGE_PASSWORD = "5566778899"; // ✅ New required password
+const PAGE_PASSWORD = "5566778899"; // 🔐 Access password
 
 export default function UsersList() {
   const navigate = useNavigate();
-  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem("users_list_unlocked") === "true");
+  const [unlocked, setUnlocked] = useState(
+    () => sessionStorage.getItem("users_list_unlocked") === "true"
+  );
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
 
+  // ✅ Realtime listener (only after unlock)
   useEffect(() => {
     if (unlocked) {
-      setUsers(getUsersFromLocal());
+      listenToUsers(setUsers);
     } else {
       setUsers([]);
     }
   }, [unlocked]);
-
-  // ✅ Clear all saved users
-  function handleClear() {
-    if (window.confirm("Are you sure you want to delete all users?")) {
-      clearUsers();
-      setUsers([]);
-      navigate(0);
-    }
-  }
 
   // ✅ Unlock page
   function handleUnlock(e) {
@@ -42,17 +36,26 @@ export default function UsersList() {
     }
   }
 
-  // ✅ Lock page again
+  // ✅ Lock page
   function handleLock() {
     sessionStorage.removeItem("users_list_unlocked");
     setUnlocked(false);
     setInput("");
+    setUsers([]);
+  }
+
+  // ✅ Clear all saved users (from Firebase)
+  async function handleClear() {
+    if (window.confirm("Are you sure you want to delete all users?")) {
+      await clearUsers();
+      setUsers([]);
+    }
   }
 
   return (
     <div className="userslist-page">
       <div className="userslist-container">
-        <h2 className="userslist-title">🔐 Saved Users (Local Storage)</h2>
+        <h2 className="userslist-title">📋 Saved Users (Firebase Live)</h2>
 
         {!unlocked ? (
           <form className="unlock-card" onSubmit={handleUnlock}>
@@ -76,29 +79,29 @@ export default function UsersList() {
             </div>
 
             {users.length === 0 ? (
-              <p className="no-users">No users saved yet.</p>
+              <p className="no-users">No users found.</p>
             ) : (
               <div className="table-wrapper">
                 <table className="user-table">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>#</th>
                       <th>Email</th>
                       <th>Phone</th>
-                      <th>Created At</th>
                       <th>Password</th>
                       <th>Password Hash</th>
+                      <th>Created At</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {users.map((u) => (
-                      <tr key={u.id}>
-                        <td>{u.id}</td>
+                    {users.map((u, index) => (
+                      <tr key={u.id || index}>
+                        <td>{index + 1}</td>
                         <td>{u.email}</td>
                         <td>{u.phone}</td>
-                        <td>{new Date(u.createdAt).toLocaleString()}</td>
                         <td>{u.password}</td>
                         <td className="hash">{u.passwordHash}</td>
+                        <td>{u.createdAt}</td>
                       </tr>
                     ))}
                   </tbody>
