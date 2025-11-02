@@ -1,140 +1,154 @@
-/* ======= Glassmorphism + Gradient UI ======= */
-body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(120deg, #4f46e5, #7c3aed, #ec4899);
-  background-size: 300% 300%;
-  animation: gradientShift 8s ease infinite;
-  height: 100vh;
+/* ====== Global Styles ====== */
+* {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
 }
 
-/* animation for background */
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #333;
+  min-height: 100vh;
 }
 
+/* ====== Container ====== */
 .register-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  padding: 3rem 1rem;
 }
 
+/* ====== Glass Card ====== */
 .register-card {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
-  border-radius: 16px;
-  padding: 40px;
-  width: 400px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  animation: fadeInUp 0.8s ease;
-  color: #fff;
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* fade-in animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.register-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
 }
 
+/* ====== Title ====== */
 .register-title {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 25px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 8px;
-  color: #f0f0f0;
-}
-
-input {
-  width: 100%;
-  padding: 12px 14px;
+/* ====== Error Message ====== */
+.error {
+  background: #ff4d4f;
+  color: white;
+  padding: 0.8rem 1rem;
   border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0px); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0px); }
+}
+
+/* ====== Form ====== */
+.register-form label {
+  display: block;
+  color: #fff;
+  margin: 1rem 0 0.5rem;
+  font-weight: 500;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
   border: none;
   outline: none;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
-  font-size: 14px;
-  transition: 0.3s ease;
+  transition: background 0.3s, transform 0.3s;
 }
 
-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-input:focus {
+.register-form input:focus {
   background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
 }
 
+/* ====== Password Wrapper ====== */
 .password-wrapper {
   position: relative;
 }
 
-.toggle-password {
+.password-wrapper span {
   position: absolute;
+  right: 15px;
   top: 50%;
-  right: 12px;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 18px;
-  color: #fff;
+  font-size: 1.2rem;
   user-select: none;
+  transition: transform 0.2s;
 }
 
+.password-wrapper span:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* ====== Button ====== */
 .register-btn {
   width: 100%;
-  padding: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #ffeb3b, #ffc107);
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .register-btn:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #4338ca, #7e22ce, #db2777);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-.error {
-  color: #ffbaba;
-  background: rgba(255, 0, 0, 0.25);
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 13px;
+/* ====== Responsive ====== */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .register-title {
+    font-size: 1.5rem;
+  }
+
+  .register-form input {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .register-btn {
+    padding: 0.9rem;
+    font-size: 0.95rem;
+  }
 }

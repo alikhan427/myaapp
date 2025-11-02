@@ -1,0 +1,256 @@
+.home-page {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 6rem 2rem;
+  gap: 2rem;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  word-break: break-word;
+}
+
+.hero-content p {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+.cta-button {
+  padding: 1.2rem 2.5rem;
+  background: #ffeb3b;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cta-button:hover {
+  background: #ffc107;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Sections */
+.how-it-works, .bonus-section, .features, .testimonials, .faq, .cta-final {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.steps, .feature-cards, .testimonial-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.step, .feature-card, .testimonial-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  width: 280px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.step:hover, .feature-card:hover, .testimonial-card:hover {
+  transform: translateY(-10px);
+}
+
+.step h3, .feature-card h3 {
+  color: #2575fc;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.step p, .feature-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.testimonial-card h4 {
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* FAQ Section */
+.faq-item {
+  max-width: 650px;
+  margin: 1rem auto;
+  text-align: left;
+  background: #f8f8f8;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+/* Bonus Section */
+.bonus-section {
+  background: #6a11cb;
+  color: white;
+  border-radius: 15px;
+}
+
+/* Features & FAQ Background */
+.features, .faq {
+  background: #f0f2f5;
+}
+
+/* Final CTA Section */
+.cta-final {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  color: white;
+  padding: 6rem 2rem;
+}
+
+.cta-final h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-final .cta-button {
+  font-size: 1.2rem;
+  padding: 1.3rem 3rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .steps, .feature-cards, .testimonial-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .step, .feature-card, .testimonial-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+  .cta-button {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .cta-button {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.8rem;
+  }
+  .step, .feature-card, .testimonial-card {
+    width: 95%;
+    padding: 1.5rem 1.2rem;
+  }
+  .cta-final h2 {
+    font-size: 1.6rem;
+  }
+}
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.modal input {
+  width: 90%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.close-button {
+  margin-top: 1rem;
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Animations */
+.animate {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animate:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}

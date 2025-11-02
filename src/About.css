@@ -1,0 +1,85 @@
+.about-page {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* About Info */
+.about-info {
+  max-width: 700px;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease forwards;
+}
+
+.about-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffeb3b;
+}
+
+.about-info p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Registration Section */
+.about-register {
+  max-width: 500px;
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  animation: slideUp 0.8s ease forwards;
+  text-align: center;
+}
+
+.about-register h2 {
+  color: #ffc107;
+  margin-bottom: 1rem;
+}
+
+/* User Counter & Bonus */
+.user-counter, .bonus-notification {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.bonus-notification {
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .about-info, .about-register { padding: 1.5rem; }
+  .about-info h1 { font-size: 2rem; }
+}
