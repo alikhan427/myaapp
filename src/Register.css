@@ -1,154 +1,100 @@
-/* ====== Global Styles ====== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #333;
-  min-height: 100vh;
-}
-
-/* ====== Container ====== */
+/* src/Register.css */
 .register-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem 1rem;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #6b73ff, #000dff);
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ====== Glass Card ====== */
 .register-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
-  padding: 3rem 2rem;
+  padding: 40px;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  max-width: 450px;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .register-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* ====== Title ====== */
 .register-title {
   text-align: center;
-  color: #fff;
+  margin-bottom: 25px;
   font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 
-/* ====== Error Message ====== */
-.error {
-  background: #ff4d4f;
-  color: white;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: 500;
-  animation: shake 0.3s;
-}
-
-@keyframes shake {
-  0% { transform: translateX(0px); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0px); }
-}
-
-/* ====== Form ====== */
 .register-form label {
   display: block;
-  color: #fff;
-  margin: 1rem 0 0.5rem;
+  margin-bottom: 5px;
   font-weight: 500;
 }
 
 .register-form input {
   width: 100%;
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
   border: none;
   outline: none;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  transition: background 0.3s, transform 0.3s;
 }
 
-.register-form input:focus {
-  background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.02);
-}
-
-/* ====== Password Wrapper ====== */
 .password-wrapper {
   position: relative;
 }
 
-.password-wrapper span {
+.toggle-password {
   position: absolute;
-  right: 15px;
   top: 50%;
+  right: 15px;
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 1.2rem;
-  user-select: none;
-  transition: transform 0.2s;
 }
 
-.password-wrapper span:hover {
-  transform: translateY(-50%) scale(1.2);
-}
-
-/* ====== Button ====== */
 .register-btn {
   width: 100%;
-  padding: 1rem;
-  margin-top: 1rem;
+  padding: 12px;
   border: none;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #ffeb3b, #ffc107);
-  color: #333;
+  border-radius: 12px;
+  background: #ff4b2b;
+  font-size: 1.1rem;
   font-weight: bold;
-  font-size: 1rem;
+  color: #fff;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
 }
 
 .register-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: #ff416c;
 }
 
-/* ====== Responsive ====== */
-@media (max-width: 480px) {
-  .register-card {
-    padding: 2rem 1.5rem;
-  }
+.error {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ffdddd;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
 
-  .register-title {
-    font-size: 1.5rem;
-  }
-
-  .register-form input {
-    padding: 0.8rem 1rem;
-    font-size: 0.95rem;
-  }
-
-  .register-btn {
-    padding: 0.9rem;
-    font-size: 0.95rem;
-  }
+.success {
+  background: rgba(0, 255, 0, 0.2);
+  color: #ddffdd;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
 }

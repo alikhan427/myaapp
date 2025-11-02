@@ -1,3 +1,4 @@
+// src/Register.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,37 +16,53 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+    setSuccess("");
 
+    // ✅ Validation
     if (!isValidEmail(email)) return setError("Please enter a valid email address.");
     if (!isValidPhone(phone)) return setError("Enter a valid phone number (7–15 digits).");
     if (password.length < 6) return setError("Password must be at least 6 characters.");
 
-    const pwHash = await hashPassword(password);
-    const user = {
-      email,
-      phone,
-      password,
-      passwordHash: pwHash,
-      createdAt: new Date().toISOString(),
-    };
+    try {
+      const pwHash = await hashPassword(password);
 
-    await saveUserToLocal(user);
+      const user = {
+        email,
+        phone,
+        password,
+        passwordHash: pwHash,
+        createdAt: new Date().toISOString(),
+      };
 
-    setEmail("");
-    setPhone("");
-    setPassword("");
-    navigate("/users");
+      await saveUserToLocal(user);
+
+      // ✅ Show success message & clear inputs
+      setEmail("");
+      setPhone("");
+      setPassword("");
+      setSuccess("🎉 Your registration was successful!");
+
+      // ✅ Optional: Redirect to Users page after 1.5 seconds
+      setTimeout(() => {
+        navigate("/users");
+      }, 1500);
+    } catch (err) {
+      setError("❌ Something went wrong. Please try again.");
+    }
   }
 
   return (
     <div className="register-container">
       <div className="register-card">
         <h2 className="register-title">Register New User</h2>
+
         {error && <div className="error">{error}</div>}
+        {success && <div className="success">{success}</div>}
 
         <form onSubmit={handleSubmit} className="register-form">
           <label>Email</label>
@@ -75,12 +92,15 @@ export default function Register() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <span onClick={() => setShowPassword(!showPassword)}>
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
               {showPassword ? "🙈" : "👁️"}
             </span>
           </div>
 
-          <button type="submit" className="register-btn">Save User</button>
+          <button type="submit" className="register-btn">Register Now</button>
         </form>
       </div>
     </div>
